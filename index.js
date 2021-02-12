@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 
-const { token, prefix } = reguire("./config.json");
+const { prefix } = reguire("./config.json");
 
 const client = new Discord.Client();
 
