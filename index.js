@@ -1,36 +1,17 @@
-// inmportation librairie discord
-const Discord = require('discord.js'),
-    client = new Discord.Client({
-        fetchAllMembers: true,
-        disableEveryone: true
-    })
-    config = require('./config.json')
-    
-// Chargement variable prefix et channelbienvenu
-const {prefix, channelbienvenu} = require('./config.json')
+const Discord = require("discord.js");
 
-// Connexion
-client.login(config.process.env.TOKEN)
-client.on('ready', () => {
-    console.log('bot opérationnel')
-})
+const { token, prefix } = reguire("./config.json");
 
-// test Ping Pong
-client.on('message', (message) => {
-    if (message.content === `${prefix}ping`) {
-        message.channel.send('Pong !')
-    }
-})
+const client = new Discord.Client();
 
-// Message bienvenue Salon Bienvenu
-client.on('guildMemberAdd', member => {
-    console.log('Un nouveau membre est arrivé')
-    member.guild.channels.cache.find(channel => channel.id === "644956327151534093").send('Bonjour **'+ member.displayName + '**, bienvenu sur le discord **Authentic**.\nNous sommes désormais **' + member.guild.memberCount + '** sur le server !')
-})
+client.on("ready", () => {
+    console.log("Bot opérationnel !");
+});
 
-// Message départ d'un membre
-client.on('guildMemberRemove', member => {
-    console.log('Un membre nous a quitté')
-    member.guild.channels.cache.find(channel => channel.id === "644956327151534093").send('**' + member.displayName +'** nous a quitté... 😢')
-})
+client.on("message", (message) => {
+    if (message.content === `${prefix}ping`)
+    message.channel.send("Pong !");
 
+});
+
+client.login(process.env.TOKEN);
